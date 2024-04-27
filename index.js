@@ -15,15 +15,15 @@ const userSchema = new mongoose.Schema({
 })
 
 
-const UserModel = mongoose.model('users', userSchema)
+const UserModel = mongoose.model('comments', userSchema)
 
 mongoose.connect(process.env.URL_MONGODB)
 
 
 app.get('/users', async (req, res) => {
     try {
-        await UserModel.updateOne({ name: "Ned Stark" }, { $set: { email: "abcdefghik@gmail.com" } })
-        const user = UserModel.findOne({ name: "Ned Stark" })
+        await UserModel.find({ _id: "5a9427648b0beebeb69579f5", }).updateOne({ email: "blablabalbalba" })
+        const user = await UserModel.find({ _id: "5a9427648b0beebeb69579f5", })
         res.send(user)
     }
     catch (err) {
